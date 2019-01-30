@@ -1,0 +1,122 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:bk2k="http://typo3.org/ns/BK2K/BootstrapPackage/ViewHelpers" data-namespace-typo3-fluid="true">
+<header id="header-wrap">
+    <!-- Navbar Starts -->
+    <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar nav-bg">
+        <div class="container">
+            <div class="theme-header clearfix">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-toggle="collapse" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="fa fa-menu"></span>
+                        <span class="fa fa-menu"></span>
+                        <span class="fa fa-menu"></span>
+                    </button>
+                    <f:if condition="{settings.logo.file}">
+                        <f:then>
+                            <f:link.page pageUid="{rootPage}" class="navbar-brand navbar-brand-image" title="{settings.logo.linktitle}">
+                                <img class="navbar-brand-logo-normal" src="{f:uri.image(src: settings.logo.file)}" alt="{logoAlt}" height="{settings.logo.height}" width="{settings.logo.width}">
+                                <img class="navbar-brand-logo-inverted" src="{f:uri.image(src: settings.logo.fileInverted)}" alt="{logoAlt}" height="{settings.logo.height}" width="{settings.logo.width}">
+                            </f:link.page>
+                        </f:then>
+                        <f:else>
+                            <f:link.page pageUid="{rootPage}" class="navbar-brand navbar-brand-text" title="{settings.logo.linktitle}">{siteTitle}</f:link.page>
+                        </f:else>
+                    </f:if>
+                </div>
+                <div id="main-menu" class="collapse navbar-collapse">
+                    <f:render partial="DropIn/Navigation/MainBefore" arguments="{_all}" />
+                    <f:render section="MainNavigation" arguments="{menu: mainnavigation, theme: theme}" />
+                    <f:render partial="DropIn/Navigation/MainAfter" arguments="{_all}" />
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu" data-logo="{f:uri.image(src: settings.logo.file)}"></div>
+    </nav>
+    <f:if condition="{data.uid} == 1">
+        <div id="carousel-area">
+            <div id="carousel-slider" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-slider" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-slider" data-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <f:image src="EXT:grobenhof/Resources/Public/Images/slider1.png" width="1400c" height="600c" class="d-block w-100"/>
+                        <div class="carousel-caption">
+                            <h2 class="fadeInUp wow animated" data-sppb-wow-delay="0.8s" style="visibility: visible;">
+                                Herzlich Willkommen
+                            </h2>
+                            <h3 class="fadeInUp wow animated" data-sppb-wow-delay="1.2s" style="visibility: visible;">auf unserer Website!</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <f:image src="EXT:grobenhof/Resources/Public/Images/slider2.jpg" width="1400c" height="600c" class="d-block w-100"/>
+                        <div class="carousel-caption">
+                            <h2 class="fadeInUp wow animated" data-sppb-wow-delay="0.8s" style="visibility: visible;">
+                                Auch 2019 bieten wir wieder Bruteier von einer Vielzahl von Geflügelrassen für Sie an.
+                            </h2>
+                            <h3 class="fadeInUp wow animated" data-sppb-wow-delay="1.2s" style="visibility: visible;">
+                                Schreiben Sie uns!
+                            </h3>
+                            <a class="btn btn-lg btn-common fadeInUp wow animated" data-sppb-wow-delay="1.4s" href="#" style="visibility: visible;">
+                                <i class="fa fa-coffee">
+                                </i>
+                                Kontakt
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carousel-slider" role="button" data-slide="prev">
+                    <span class="carousel-control carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel-slider" role="button" data-slide="next">
+                    <span class="carousel-control carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </f:if>
+</header>
+<!-- Header-wrap Section End -->
+
+
+<f:section name="MainNavigation">
+    <f:if condition="{menu}">
+        <ul class="navbar-nav mr-auto w-100 justify-content-end">
+            <f:for each="{menu}" as="item">
+                 <li class="nav-item{f:if(condition: item.children, then:' dropdown dropdown-hover')}">
+                            <a href="{item.link}" id="nav-item-{item.data.uid}" class="nav-link{f:if(condition: item.active, then:' active')}{f:if(condition: item.children, then:' dropdown-toggle')}"{f:if(condition: item.target, then: ' target="{item.target}"')} title="{item.title}"{f:if(condition: item.children, then:' aria-haspopup="true" aria-expanded="false"')}>
+                                <span class="nav-link-text">{item.title}<f:if condition="{item.current}"> <span class="sr-only">(current)</span></f:if></span>
+                            </a>
+                            <f:if condition="{item.children}">
+                                <ul class="dropdown-menu" aria-labelledby="nav-item-{item.data.uid}">
+                                    <f:for each="{item.children}" as="child">
+                                        <li class="nav-item{f:if(condition: child.children, then:' dropdown dropdown-hover')}">
+                                                    <a href="{child.link}" id="nav-item-{child.data.uid}" class="nav-link{f:if(condition: '{child.active} == 1', then:' active')}{f:if(condition: child.children, then:' dropdown-toggle')}"{f:if(condition: child.target, then: ' target="{child.target}"')} title="{child.title}"{f:if(condition: child.children, then:' aria-haspopup="true" aria-expanded="false"')}>
+                                                    <span class="nav-link-text">{child.title}<f:if condition="{child.current}"> <span class="sr-only">(current)</span></f:if></span>
+                                                    </a>
+                                                    <f:if condition="{child.children}">
+                                                        <ul class="dropdown-menu-third" aria-labelledby="nav-item-{item.data.uid}">
+                                                            <f:for each="{child.children}" as="grandchild">
+                                                                        <li>
+                                                                            <a href="{grandchild.link}" class="dropdown-item {f:if(condition: grandchild.active, then:' active')}"{f:if(condition: grandchild.target, then: ' target="{grandchild.target}"')} title="{grandchild.title}">
+                                                                            <span class="dropdown-text">{grandchild.title}<f:if condition="{grandchild.current}"> <span class="sr-only">(current)</span></f:if></span>
+                                                                            </a>
+                                                                        </li>
+
+                                                            </f:for>
+                                                        </ul>
+                                                    </f:if>
+                                                </li>
+                                    </f:for>
+                                </ul>
+                            </f:if>
+                        </li>
+            </f:for>
+        </ul>
+    </f:if>
+</f:section>
+</html>
+

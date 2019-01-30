@@ -1,0 +1,37 @@
+######################
+#### DEPENDENCIES ####
+######################
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:bootstrap_package/Configuration/TypoScript/setup.typoscript">
+
+
+##############
+#### PAGE ####
+##############
+page {
+    includeCSS {
+        theme = EXT:grobenhof/Resources/Public/Scss/Theme/theme.scss
+        grobenhof = EXT:grobenhof/Resources/Public/Css/main.css
+        responsive = EXT:grobenhof/Resources/Public/Css/responsive.css
+        slicknav = EXT:grobenhof/Resources/Public/Css/slicknav.css
+    }
+
+    includeJSLibs {
+
+    }
+
+    includeJS {
+
+    }
+
+    includeJSFooterlibs {
+
+    }
+
+    includeJSFooter {
+        grobenhof_scripts = EXT:grobenhof/Resources/Public/JavaScript/Dist/scripts.js
+    }
+}
+
+##############
+#### Tools ####
+##############

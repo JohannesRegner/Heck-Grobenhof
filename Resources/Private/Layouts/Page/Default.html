@@ -1,0 +1,45 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:spaceless>
+<div id="top"></div>
+<div class="body-bg{f:if(condition:theme.navigation.type, then:' body-bg-{theme.navigation.type}')}">
+
+    <f:render partial="Structure/CookieConsent" arguments="{_all}" />
+    <a class="sr-only sr-only-focusable" href="#page-content">
+        <span>{f:translate(key: 'skiptomaincontent', extensionName: 'bootstrap_package')}</span>
+    </a>
+    <f:render partial="Navigation/Main" arguments="{_all}" />
+    <f:render section="Border" optional="true" />
+    <f:render partial="Navigation/Breadcrumb" arguments="{_all}" />
+
+    <div id="page-content" class="bp-page-content main-section">
+        <!--TYPO3SEARCH_begin-->
+        <f:render section="Main" />
+        <!--TYPO3SEARCH_end-->
+    </div>
+
+    <footer>
+
+        <f:render partial="Structure/FooterMeta" arguments="{_all}" />
+        <div id="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <p class="copyright-text">Made by <a href="https://www.r-worx.de" rel="nofollow">r-worx</a></p>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="social-footer text-right">
+                            <a href="#"><i class="fab fa-facebook-f icon-round"></i></a>
+                            <a href="#"><i class="fab fa-twitter icon-round"></i></a>
+                            <a href="#"><i class="fab fa-linkedin icon-round"></i></a>
+                            <a href="#"><i class="fab fa-google-plus icon-round"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <f:render partial="Structure/ScrollTop" arguments="{_all}" />
+
+</div>
+</f:spaceless>
+</html>
